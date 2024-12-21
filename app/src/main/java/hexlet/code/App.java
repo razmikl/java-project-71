@@ -20,7 +20,7 @@ public class App implements Runnable{
     @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
     Format format;
 
-    @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
+    @Option(names = {"-h", "--help"}, usageHelp = true ,description = "Show this help message and exit.")
     boolean helpRequested;
 
     @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
@@ -28,15 +28,14 @@ public class App implements Runnable{
 
 
     public static void main(String[] args) {
-        CommandLine cmd = new CommandLine(new App());
-        cmd.execute(args);
+        CommandLine commandLine = new CommandLine(new App());
+        commandLine.execute(args);
     }
 
     @Override
     public void run() {
         if (helpRequested) {
-            System.out.println("Help message");
-            return;
+            CommandLine.usage(this, System.out);
         }
     }
 }
